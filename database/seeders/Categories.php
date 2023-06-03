@@ -18,19 +18,19 @@ class Categories extends Seeder
 
         $data = 
         [
-            ['name' => 'Computadores', 'description' => ''],
-            ['name' => 'Celulares', 'description' => ''],
-            ['name' => 'Monitores', 'description' => ''],
-            ['name' => 'Tecnología Portátil', 'description' => ''],
-            ['name' => 'Componentes Informáticos', 'description' => ''],
-            ['name' => 'Audio y Video', 'description' => ''],
-            ['name' => 'Periféricos', 'description' => ''],
-            ['name' => 'Consumibles y Media', 'description' => ''],
-            ['name' => 'Protección de Poder', 'description' => ''],
-            ['name' => 'Almacenamiento', 'description' => ''],
-            ['name' => 'Memorias', 'description' => ''],
-            ['name' => 'Accesorios para Computadores', 'description' => ''],
-            ['name' => 'Maletines', 'description' => '']
+            ['name' => 'Computers', 'description' => 'articles related to desktop computers are stored'],
+            ['name' => 'Cell Phone', 'description' => 'articles related to cell phones'],
+            ['name' => 'Monitors', 'description' => 'items related to monitors stored in stock'],
+            ['name' => 'Postable technology', 'description' => 'laptop related items'],
+            ['name' => 'Computer Components', 'description' => 'articles related to computer parts'],
+            ['name' => 'Audio and Video', 'description' => ''],
+            ['name' => 'Peripherals', 'description' => ''],
+            ['name' => 'Consumables and Media', 'description' => ''],
+            ['name' => 'Power Protection', 'description' => ''],
+            ['name' => 'Storage', 'description' => ''],
+            ['name' => 'Memories', 'description' => ''],
+            ['name' => 'Computer Accessories', 'description' => ''],
+            ['name' => 'Briefcases', 'description' => '']
         ];
         
         DB::table('categories')->insert($data);
