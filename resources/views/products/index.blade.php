@@ -1,19 +1,23 @@
 @extends('layouts.app')
 
 @section('title')
-    Product
+    Products
 @endsection
 
 @section('content')
+    <div class=" w-full min-h-screen bg-gradient-to-tr from-blue-700 via-blue-800 to-gray-900 flex flex-col">
+        <div class=" max-w-7xl mx-auto flex flex-col justify-center items-center flex-1">
+            <h1 class="uppercase text-white text-bold text-3xl hover:animate-pulse font-bold">Products</h1>
+            
+            <div class=" bg-lime-600 hover:bg-lime-800 text-white p-3 rounded-xl mr-0 ml-auto cursor-pointer transition-colors">
+                <a href="{{route('product.create')}}">Crear Producto</a>
+            </div>
 
-    <div class="flex flex-col justify-center w-full items-center h-screen mx-auto bg-gradient-to-tr from-blue-700 via-blue-800 to-gray-900 gap-6 shadow-2xl">
-        <h1 class="uppercase text-white text-bold text-3xl hover:animate-pulse hover:cursor-pointer ">Products Table</h1>
-        <div class="bg-white">
             <div class="overflow-x-auto">
-                <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+                <div class="inline-block min-w-full py-2">
                     <div class="overflow-hidden">
                         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-                            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 border-4 border-white">
                                 <thead
                                     class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                     <tr>
@@ -77,9 +81,9 @@
                                             </td>
                                             <td class="flex items-center px-6 py-4 space-x-3">
                                                 <a href="#"
-                                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                                    class="font-medium text-white hover:bg-blue-900 px-4 py-1 bg-blue-700 rounded transition-colors">Edit</a>
                                                 <a href="#"
-                                                    class="font-medium text-red-600 dark:text-red-500 hover:underline">Remove</a>
+                                                    class="font-medium text-white hover:bg-red-900 px-4 py-1 bg-red-700 rounded transition-colors">Remove</a>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -110,9 +114,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="bg-white p-3 rounded-xl">
-            <a href="{{route('product.create')}}">Crear Producto</a>
         </div>
     </div>
 @endsection
