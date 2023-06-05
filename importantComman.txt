@@ -1,0 +1,15 @@
+comandos importantes de laravel
+/****INICIO***/
+php artisan serve
+npm run dev
+/************/
+
+/****migration*****/
+php artinsa migrate
+
+/*****************/
+
+/***** Seeders *******/
+php artisan make:seeder nameSeeders
+php artisan db:seed --class=nameSeeders
+

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categories;
 use App\Models\Product;
+use App\Models\Subcategories;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -24,7 +26,13 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('products.create');
+
+        
+        $subcategories = Subcategories::all();
+
+        return view('products.create', [
+            'subcategories' => $subcategories,
+        ]);
     }
 
     /**
@@ -32,6 +40,20 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate(
+            $request,
+            [
+                'name' => ['required'],
+                'price' => ['required'],
+                'stock' => ['required'],
+                'brand' => ['required'],
+                'image'=>[''],
+                'description' => ['required'],
+                'sku' => ['required'],
+                'subcategory_id' => ['required'],
+            ]
+        );
+
         Product::create([
             'name' => $request->name,
             'price' => $request->price,
@@ -41,9 +63,10 @@ class ProductController extends Controller
             'description' => $request->description,
             'sku' => $request->sku,
             'state' => 1,
-            'subcategory_id' => 1,
+            'subcategory_id' => 5,
         ]);
         return redirect()->route('product.index');
+
     }
 
     /**
@@ -59,7 +82,15 @@ class ProductController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $subcategories = Subcategories::all();
+        $product = Product::where('id',$id)->get();
+
+        // dd($product);
+
+        return view('products.edit', [
+            'product'=>$product[0],
+            'subcategories' => $subcategories,
+        ]);
     }
 
     /**
@@ -67,14 +98,62 @@ class ProductController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+       
+        $this->validate(
+            $request,
+            [
+                'name' => ['required'],
+                'price' => ['required'],
+                'stock' => ['required'],
+                'brand' => ['required'],
+                // 'image'=>[''],
+                'description' => ['required'],
+                'sku' => ['required'],
+                'subcategory_id' => ['required'],
+            ]
+        );
+        $product = Product::findOrFail($id);
+        $product->name = $request->name;
+        $product->price = $request->price;
+        $product->stock = $request->stock;
+        $product->brand = $request->brand;
+        // $product->image = $request->image;
+        $product->description = $request->description;
+        $product->sku = $request->sku;
+        $product->subcategory_id = $request->subcategory_id;
+
+        $product->save();
+
+        return redirect()->route('product.index');
+
+
+
+
+
+        // dd($product[0]);
+
+        // Product::updated([
+        //     'name' => $request->name,
+        //     'price' => $request->price,
+        //     'stock' => $request->stock,
+        //     'brand' => $request->brand,
+        //     'image' => '',
+        //     'description' => $request->description,
+        //     'sku' => $request->sku,
+        //     'state' => 1,
+        //     'subcategory_id' => 5,
+        // ]);
+        return redirect()->route('product.index')->with('success','the product has be update.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        $product = Product::findOrFail($id);
+        $product->delete();
+        return redirect()->route('product.index');
+
     }
 }

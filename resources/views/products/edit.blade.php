@@ -7,16 +7,15 @@
 @section('content')
 <div class="flex flex-col justify-center w-full items-center min-h-screen mx-auto bg-gradient-to-tr from-blue-700 via-blue-800 to-gray-900 gap-6 shadow-2xl py-12">
     <div class="max-w-lg bg-white p-6 rounded-xl">
-        <h2 class="text-black uppercase font-bold text-2xl text-center">Create Product</h2>
+        <h2 class="text-black uppercase font-bold text-2xl text-center">Edit Product</h2>
 
-        <form method="POST" action="{{ route('product.store')}}" class="w-full max-w-lg mt-4">
+        <form method="POST" action="{{route('product.update',$product->id)}}" class="w-full max-w-lg mt-4">
             @csrf
-
+            @method('PUT')
             <div class="w-full">
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="name">Product Name:</label>
 
-                <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="name" name="name" type="text" placeholder="Product Name" value="{{old('name')}}">
-
+                <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="name" name="name" type="text" placeholder="Product Name" value="{{old('name',$product->name)}}">
                 @error('name')
                     <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{$message}}</p>
                 @enderror
@@ -28,7 +27,7 @@
                         Price:
                     </label>
 
-                    <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="price" name="price" type="number" placeholder="Price" value="{{old('price')}}">
+                    <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="price" name="price" type="number" placeholder="Price" value="{{old('price',$product->price)}}">
 
                     @error('price')
                         <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{$message}}</p>
@@ -38,7 +37,7 @@
                 <div class="w-full md:w-1/2 mb-6 md:mb-3 md:pl-2">
                     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="stock">Stock:</label>
 
-                    <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="stock" type="number" name="stock" placeholder="stock" value="{{old('stock')}}">
+                    <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="stock" type="number" name="stock" placeholder="stock" value="{{old('stock',$product->stock)}}">
 
                     @error('stock')
                         <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{$message}}</p>
@@ -50,7 +49,7 @@
                 <div class="w-full md:w-1/2 md:pr-2 mb-6 md:mb-3">
                     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="brand">Brand:</label>
 
-                    <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="brand" name="brand" type="text" placeholder="Brand" value="{{old('brand')}}">
+                    <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="brand" name="brand" type="text" placeholder="Brand" value="{{old('brand',$product->brand)}}">
 
                     @error('brand')
                         <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{$message}}</p>
@@ -60,7 +59,7 @@
                 <div class="w-full md:w-1/2 md:pl-2 mb-6 md:mb-3">
                     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="sku">SKU:</label>
 
-                    <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="sku" type="text" name="sku" placeholder="SKU" value="{{old('sku')}}">
+                    <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="sku" type="text" name="sku" placeholder="SKU" value="{{old('sku',$product->sku)}}">
 
                     @error('sku')
                         <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{$message}}</p>
@@ -72,7 +71,7 @@
                 <div class="w-full">
                     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="description">Desciption:</label>
 
-                    <textarea class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="description" name="description" rows="5" placeholder="" value="{{old('description')}}"></textarea>
+                    <textarea class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="description" name="description" rows="5" placeholder="" value="">{{old('description',$product->description)}}</textarea>
 
                     @error('description')
                         <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{$message}}</p>
@@ -85,10 +84,9 @@
 
                 <div class="relative">
                     <select class="text-center block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="subcategory_id" name="subcategory_id">
-                        <option value="" selected disabled>-- Select --</option>
-
+                        <option  value="" selected disabled>-- Select --</option>
                         @foreach ($subcategories as $subcategory)
-                            <option value="{{$subcategory->id}}">{{$subcategory->name}}</option>
+                            <option {{$product->id===$subcategory->id ? 'selected ' : ' '}} value="{{$subcategory->id}}">{{$subcategory->name}}</option>
                         @endforeach
                     </select>
 
