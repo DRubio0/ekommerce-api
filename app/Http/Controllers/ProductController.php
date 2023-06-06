@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Categories;
 use App\Models\Product;
 use App\Models\Subcategories;
 use Illuminate\Http\Request;
@@ -143,7 +142,7 @@ class ProductController extends Controller
         //     'state' => 1,
         //     'subcategory_id' => 5,
         // ]);
-        return redirect()->route('product.index')->with('success','the product has be update.');
+        return redirect()->route('product.index');
     }
 
     /**
