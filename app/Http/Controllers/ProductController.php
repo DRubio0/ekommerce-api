@@ -123,26 +123,7 @@ class ProductController extends Controller
 
         $product->save();
 
-        return redirect()->route('product.index');
-
-
-
-
-
-        // dd($product[0]);
-
-        // Product::updated([
-        //     'name' => $request->name,
-        //     'price' => $request->price,
-        //     'stock' => $request->stock,
-        //     'brand' => $request->brand,
-        //     'image' => '',
-        //     'description' => $request->description,
-        //     'sku' => $request->sku,
-        //     'state' => 1,
-        //     'subcategory_id' => 5,
-        // ]);
-        return redirect()->route('product.index');
+        return redirect()->route('product.index');    
     }
 
     /**

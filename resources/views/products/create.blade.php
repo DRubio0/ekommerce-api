@@ -115,7 +115,9 @@
             </div>
 
             <div class="flex justify-end">
-                <input class="bg-blue-500 p-3 rounded md:w-1/2 justify-end text-white font-bold uppercase hover:bg-blue-700 transition-colors cursor-pointer" type="submit" value="Save Product">
+                <a class="bg-red-500 p-3 rounded md:w-1/2 justify-end text-white font-bold uppercase m-1 hover:bg-red-700 transition-colors cursor-pointer text-center" href="{{route('product.index')}}">Cancel</a>
+                <input class="bg-blue-500 p-3 rounded md:w-1/2 justify-end text-white font-bold uppercase m-1 hover:bg-blue-700 transition-colors cursor-pointer" type="submit" value="Save Product">
+
             </div>
         </form>
     </div>

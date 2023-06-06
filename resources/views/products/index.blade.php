@@ -75,10 +75,13 @@
                                                 {{ $product->sku }}
                                             </td>
                                             <td class="flex items-center px-6 py-4 space-x-3">
-                                                <a href="#"
+                                                <a href="{{'/product/'.$product->id.'/edit'}}"
                                                     class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                                                <a href="#"
-                                                    class="font-medium text-red-600 dark:text-red-500 hover:underline">Remove</a>
+                                                    <form action="{{ route('product.destroy', $product->id) }}" method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button class="font-medium text-red-600 dark:text-red-500 hover:underline" type="submit" onclick="return confirm('¿Estás seguro de que deseas eliminar este producto?')">Delete</button>
+                                                    </form>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -89,6 +92,6 @@
                 </div>
             </div>
         </div>
-        
+        <a class="bg-white p-2 rounded hover:bg-blue-100 font-bold" href="{{route('product.create')}}">New Product</a>
     </div>
 @endsection
