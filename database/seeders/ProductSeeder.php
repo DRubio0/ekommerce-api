@@ -24,7 +24,7 @@ class ProductSeeder extends Seeder
                     'description' => 'articles related to desktop computers are stored',
                     'sku' => 'KSE1255',
                     'state' =>1,
-                    'subcategory_id' => 1,
+                    'subcategory_id' => 5,
                 ],
             ];
 

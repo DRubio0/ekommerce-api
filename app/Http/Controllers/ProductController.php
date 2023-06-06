@@ -17,6 +17,7 @@ class ProductController extends Controller
         return view('products.index', [
             'products' => $products,
         ]);
+        // return $products;
 
     }
 
@@ -134,6 +135,7 @@ class ProductController extends Controller
         $product = Product::findOrFail($id);
         $product->delete();
         return redirect()->route('product.index');
+      
 
     }
 }

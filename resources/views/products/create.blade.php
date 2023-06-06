@@ -9,7 +9,7 @@
     <div class="max-w-lg bg-white p-6 rounded-xl">
         <h2 class="text-black uppercase font-bold text-2xl text-center">Create Product</h2>
 
-        <form method="POST" action="{{ route('product.store')}}" class="w-full max-w-lg mt-4">
+        <form method="POST" action="{{ route('product.store')}}" class="w-full max-w-lg mt-4" enctype="multipart/form-data">
             @csrf
 
             <div class="w-full">
@@ -107,7 +107,7 @@
             <div class="w-full">
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="image">Image:</label>
 
-                <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-6 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="image" name="image" type="file">
+                <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-6 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="image" name="image" type="file" accept="image/*">
 
                 @error('image')
                     <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{$message}}</p>
