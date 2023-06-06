@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\File;
+
 use App\Models\Product;
 use App\Models\Subcategories;
 use Illuminate\Http\Request;
@@ -11,6 +15,12 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public function index_api()
+    {
+        $products = Product::all();
+        return $products;
+
+    }
     public function index()
     {
         $products = Product::all();
@@ -26,8 +36,6 @@ class ProductController extends Controller
      */
     public function create()
     {
-
-        
         $subcategories = Subcategories::all();
 
         return view('products.create', [
@@ -47,24 +55,39 @@ class ProductController extends Controller
                 'price' => ['required'],
                 'stock' => ['required'],
                 'brand' => ['required'],
-                'image'=>[''],
+                'image'=>['image'],
                 'description' => ['required'],
                 'sku' => ['required'],
                 'subcategory_id' => ['required'],
             ]
         );
 
-        Product::create([
+
+        $imagePath = $request->file('image')->store('public/img/');
+        $imageName = basename($imagePath);
+
+            if ($request->hasFile('image') && $request->file('image')->isValid()) {
+                $image = $request->file('image');
+                $imageName = Str::random(10) . '.' . $image->getClientOriginalExtension();
+                $image->storeAs('img', $imageName, 'public');
+            } else {
+                $imageName = '';
+            }
+            //? se estara guardando un nombre o la ruta del elemento para poder acceder a el desde la version del cliente
+       $product = Product::create([
             'name' => $request->name,
             'price' => $request->price,
             'stock' => $request->stock,
             'brand' => $request->brand,
-            'image' => '',
+            'image' => $imageName,
+            // 'image' => $imageUrl,
             'description' => $request->description,
             'sku' => $request->sku,
             'state' => 1,
-            'subcategory_id' => 5,
+            'subcategory_id' => $request->subcategory_id,
         ]);
+
+        $product->image_url = asset('img/' . $imageName);
         return redirect()->route('product.index');
 
     }
@@ -74,7 +97,19 @@ class ProductController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $product = Product::findOrFail($id);
+        return response()->json([
+            'id' => $product->id,
+            'name' => $product->name,
+            'price' => $product->price,
+            'stock' => $product->stock,
+            'brand' => $product->brand,
+            'image_url' => $product->image_url,
+            'description' => $product->description,
+            'sku' => $product->sku,
+            'subcategory_id' => $product->subcategory->name,
+        ]);
+
     }
 
     /**

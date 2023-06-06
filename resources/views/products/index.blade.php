@@ -42,6 +42,9 @@ class="flex flex-col justify-center w-full items-center h-screen mx-auto bg-grad
                                             SKU
                                         </th>
                                         <th scope="col" class="px-6 py-3">
+                                            Subcategory
+                                        </th>
+                                        <th scope="col" class="px-6 py-3">
                                             Action
                                         </th>
                                     </tr>
@@ -74,6 +77,9 @@ class="flex flex-col justify-center w-full items-center h-screen mx-auto bg-grad
                                             </td>
                                             <td class="px-6 py-4">
                                                 {{ $product->sku }}
+                                            </td>
+                                            <td class="px-6 py-4">
+                                                {{ $product->subcategory_id }}
                                             </td>
                                             <td class="flex items-center px-6 py-4 space-x-3">
                                                 <a href="{{ '/product/' . $product->id . '/edit' }}"
