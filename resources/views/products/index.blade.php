@@ -5,9 +5,9 @@
 @endsection
 
 @section('content')
-<div
-class="flex flex-col justify-center w-full items-center h-screen mx-auto bg-gradient-to-tr from-blue-700 via-blue-800 to-gray-900 gap-6 shadow-2xl">
-<h1 class="font-bold uppercase text-xl text-white">Product</h1>
+    <div
+        class="flex flex-col justify-center w-full items-center h-screen mx-auto bg-gradient-to-tr from-blue-700 via-blue-800 to-gray-900 gap-6 shadow-2xl">
+        <h1 class="font-bold uppercase text-xl text-white">Product</h1>
         <div class="bg-white">
             <div class="overflow-x-auto">
                 <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
@@ -31,12 +31,6 @@ class="flex flex-col justify-center w-full items-center h-screen mx-auto bg-grad
                                         </th>
                                         <th scope="col" class="px-6 py-3">
                                             Brand
-                                        </th>
-                                        <th scope="col" class="px-6 py-3">
-                                            Image
-                                        </th>
-                                        <th scope="col" class="px-6 py-3">
-                                            Description
                                         </th>
                                         <th scope="col" class="px-6 py-3">
                                             SKU
@@ -70,31 +64,31 @@ class="flex flex-col justify-center w-full items-center h-screen mx-auto bg-grad
                                                 {{ $product->brand }}
                                             </td>
                                             <td class="px-6 py-4">
-                                                {{ $product->image }}
-                                            </td>
-                                            <td class="px-6 py-4">
-                                                {{ $product->description }}
-                                            </td>
-                                            <td class="px-6 py-4">
                                                 {{ $product->sku }}
                                             </td>
                                             <td class="px-6 py-4">
-                                                {{ $product->subcategory_id }}
+                                                {{ $product->subcategory->name }}
                                             </td>
                                             <td class="flex items-center px-6 py-4 space-x-3">
                                                 <a href="{{ '/product/' . $product->id . '/edit' }}"
                                                     class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
 
                                                 <form action="{{ route('product.destroy', $product->id) }}" method="POST">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button class="font-medium text-red-600 dark:text-red-500 hover:underline" type="submit" onclick="return confirm('¿Estás seguro de que deseas eliminar este producto?')">Delete</button>
-                                                    </form>
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button
+                                                        class="font-medium text-red-600 dark:text-red-500 hover:underline"
+                                                        type="submit"
+                                                        onclick="return confirm('¿Estás seguro de que deseas eliminar este producto?')">Delete</button>
+                                                </form>
                                             </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
                             </table>
+                            <div class="pagination-container">
+                                {{ $products->links('pagination::tailwind') }}
+                            </div>
                         </div>
                     </div>
                 </div>

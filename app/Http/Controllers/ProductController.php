@@ -2,10 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\File;
-
 use App\Models\Product;
 use App\Models\Subcategories;
 use Illuminate\Http\Request;
@@ -15,19 +12,12 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index_api()
-    {
-        $products = Product::all();
-        return $products;
-
-    }
     public function index()
     {
-        $products = Product::all();
+        $products = Product::paginate(3);
         return view('products.index', [
             'products' => $products,
         ]);
-        // return $products;
 
     }
 
@@ -62,32 +52,22 @@ class ProductController extends Controller
             ]
         );
 
-
-        $imagePath = $request->file('image')->store('public/img/');
-        $imageName = basename($imagePath);
-
-            if ($request->hasFile('image') && $request->file('image')->isValid()) {
-                $image = $request->file('image');
-                $imageName = Str::random(10) . '.' . $image->getClientOriginalExtension();
-                $image->storeAs('img', $imageName, 'public');
-            } else {
-                $imageName = '';
-            }
-            //? se estara guardando un nombre o la ruta del elemento para poder acceder a el desde la version del cliente
-       $product = Product::create([
+        $imageName = $request->file('image')->store('img_product','public');
+       
+            
+       Product::create([
             'name' => $request->name,
             'price' => $request->price,
             'stock' => $request->stock,
             'brand' => $request->brand,
             'image' => $imageName,
-            // 'image' => $imageUrl,
             'description' => $request->description,
             'sku' => $request->sku,
             'state' => 1,
             'subcategory_id' => $request->subcategory_id,
         ]);
 
-        $product->image_url = asset('img/' . $imageName);
+
         return redirect()->route('product.index');
 
     }
