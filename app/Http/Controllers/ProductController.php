@@ -12,24 +12,30 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+        $view = $request->path();
+
         $products = Product::paginate(3);
         return view('products.index', [
             'products' => $products,
+            'view' => $view,
         ]);
+
 
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
+        $view = $request->path();
         $subcategories = Subcategories::all();
 
         return view('products.create', [
             'subcategories' => $subcategories,
+            'view' => $view
         ]);
     }
 
@@ -45,17 +51,17 @@ class ProductController extends Controller
                 'price' => ['required'],
                 'stock' => ['required'],
                 'brand' => ['required'],
-                'image'=>['image'],
+                'image' => ['image'],
                 'description' => ['required'],
                 'sku' => ['required'],
                 'subcategory_id' => ['required'],
             ]
         );
 
-        $imageName = $request->file('image')->store('img_product','public');
-       
-            
-       Product::create([
+        $imageName = $request->file('image')->store('img_product', 'public');
+
+
+        Product::create([
             'name' => $request->name,
             'price' => $request->price,
             'stock' => $request->stock,
@@ -75,32 +81,37 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Request $request,string $id)
     {
+        $view = $request->path();
         $product = Product::findOrFail($id);
-        return view('products.show',
+        return view(
+            'products.show',
             [
-            'product' => $product,
+                'product' => $product,
+                'view'=>$view,
             ]
-    );
+        );
 
-        
+
 
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Request $request, string $id)
     {
+        $view = $request->path();
         $subcategories = Subcategories::all();
-        $product = Product::where('id',$id)->get();
+        $product = Product::where('id', $id)->get();
 
         // dd($product);
 
         return view('products.edit', [
-            'product'=>$product[0],
+            'product' => $product[0],
             'subcategories' => $subcategories,
+            'view'=>$view
         ]);
     }
 
@@ -109,7 +120,6 @@ class ProductController extends Controller
      */
     public function update(Request $request, string $id)
     {
-       
         $this->validate(
             $request,
             [
@@ -135,7 +145,7 @@ class ProductController extends Controller
 
         $product->save();
 
-        return redirect()->route('product.index');    
+        return redirect()->route('product.index');
     }
 
     /**
@@ -146,7 +156,7 @@ class ProductController extends Controller
         $product = Product::findOrFail($id);
         $product->delete();
         return redirect()->route('product.index');
-      
+
 
     }
 }
