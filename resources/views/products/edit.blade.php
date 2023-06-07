@@ -9,7 +9,7 @@
     <div class="max-w-lg bg-white p-6 rounded-xl">
         <h2 class="text-black uppercase font-bold text-2xl text-center">Edit Product</h2>
 
-        <form method="POST" action="{{route('product.update',$product->id)}}" enctype="multipart/form-data" class="w-full max-w-lg mt-4">
+        <form method="POST" action="{{routte('product.update',$product->id)}}" enctype="multipart/form-data" class="w-full max-w-lg mt-4">
             @csrf
             @method('PUT')
             <div class="w-full">
