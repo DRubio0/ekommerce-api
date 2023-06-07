@@ -55,7 +55,7 @@ class ProductController extends Controller
         $imageName = $request->file('image')->store('img_product','public');
        
             
-       Product::create([
+        Product::create([
             'name' => $request->name,
             'price' => $request->price,
             'stock' => $request->stock,
@@ -67,9 +67,7 @@ class ProductController extends Controller
             'subcategory_id' => $request->subcategory_id,
         ]);
 
-
         return redirect()->route('product.index');
-
     }
 
     /**
@@ -79,9 +77,9 @@ class ProductController extends Controller
     {
         $product = Product::findOrFail($id);
         return view('products.show',
-            [
+        [
             'product' => $product,
-            ]
+        ]
     );
 
         
@@ -117,18 +115,21 @@ class ProductController extends Controller
                 'price' => ['required'],
                 'stock' => ['required'],
                 'brand' => ['required'],
-                // 'image'=>[''],
+                'image'=>['image'],
                 'description' => ['required'],
                 'sku' => ['required'],
                 'subcategory_id' => ['required'],
             ]
         );
+        
+        $imageName = $request->file('image')->store('img_product', 'public');
+
         $product = Product::findOrFail($id);
         $product->name = $request->name;
         $product->price = $request->price;
         $product->stock = $request->stock;
         $product->brand = $request->brand;
-        // $product->image = $request->image;
+        $product->image = $imageName;
         $product->description = $request->description;
         $product->sku = $request->sku;
         $product->subcategory_id = $request->subcategory_id;
@@ -146,7 +147,5 @@ class ProductController extends Controller
         $product = Product::findOrFail($id);
         $product->delete();
         return redirect()->route('product.index');
-      
-
     }
 }
