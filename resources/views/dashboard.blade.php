@@ -34,14 +34,10 @@
                     <td>{{ $product->description }}</td>
                     <td>{{ $product->price }}</td>
                     <td>
-                        <form action="{{ route('product.update', $product->id) }}" method="POST">
+                        <form action="{{ route('product.status', $product->id) }}" method="POST">
                             @csrf
-                            @method('PUT')
-                            <input type="hidden" name="state" value="0">
-                            <label class="switch">
-                                <input type="checkbox" name="state" value="1" onchange="this.form.submit()" {{ $product->state ? 'checked' : '' }}>
-                                <span class="slider"></span>
-                            </label>
+                            @method('PATCH')
+                            <input type="submit" value={{$product->state ? '✓' : 'X'}} class="border-neutral-500 border-2 rounded w-8 text-center transition-colors cursor-pointer text-white hover:bg-yellow-500 hover:text-black {{$product->state ? 'bg-green-800' : 'bg-red-600'}}">
                             <span>{{ $product->state ? 'Activo' : 'Inactivo' }}</span>
                         </form>
                     </td>
