@@ -124,6 +124,16 @@ class ProductController extends Controller
 
         return redirect()->route('product.index');
     }
+
+    public function updateState(Request $request, string $id)
+    {
+        $product = Product::findOrFail($id);
+        $product->state= !$product->state;
+
+        $product->save();
+
+        return redirect()->route('dashboard');
+    }
     
     public function destroy($id)
     {
