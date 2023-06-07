@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 //Dashboard Routes
 Route::get('/',[DashboardController::class,'index'])->name('dashboard');
-Route::put('/product/{id}',[DashboardController::class,'update'])->name('product.update');
+
 
 // Routes for products
 Route::get('/product/create', [ProductController::class, 'create'])->name('product.create');
