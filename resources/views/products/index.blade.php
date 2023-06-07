@@ -51,7 +51,7 @@
                                                 {{ $product->id }}
                                             </td>
                                             <th scope="row"
-                                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white hover:text-red-500">
                                                 <a href="{{route('product.show',$product->id)}}">
                                                     {{ $product->name }}
                                                 </a>
