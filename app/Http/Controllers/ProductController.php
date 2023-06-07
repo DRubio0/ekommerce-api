@@ -78,17 +78,13 @@ class ProductController extends Controller
     public function show(string $id)
     {
         $product = Product::findOrFail($id);
-        return response()->json([
-            'id' => $product->id,
-            'name' => $product->name,
-            'price' => $product->price,
-            'stock' => $product->stock,
-            'brand' => $product->brand,
-            'image_url' => $product->image_url,
-            'description' => $product->description,
-            'sku' => $product->sku,
-            'subcategory_id' => $product->subcategory->name,
-        ]);
+        return view('products.show',
+            [
+            'product' => $product,
+            ]
+    );
+
+        
 
     }
 

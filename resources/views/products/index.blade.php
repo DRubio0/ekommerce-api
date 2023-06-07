@@ -52,7 +52,9 @@
                                             </td>
                                             <th scope="row"
                                                 class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                                {{ $product->name }}
+                                                <a href="{{route('product.show',$product->id)}}">
+                                                    {{ $product->name }}
+                                                </a>
                                             </th>
                                             <td class="px-6 py-4">
                                                 $ {{ $product->price }}
@@ -70,9 +72,9 @@
                                                 {{ $product->subcategory->name }}
                                             </td>
                                             <td class="flex items-center px-6 py-4 space-x-3">
+                                                
                                                 <a href="{{ '/product/' . $product->id . '/edit' }}"
                                                     class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-
                                                 <form action="{{ route('product.destroy', $product->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
@@ -86,9 +88,9 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                            <div class="pagination-container">
-                                {{ $products->links('pagination::tailwind') }}
-                            </div>
+                        </div>
+                        <div class="pagination-container mt-3">
+                            {{ $products->links('pagination::tailwind') }}
                         </div>
                     </div>
                 </div>
