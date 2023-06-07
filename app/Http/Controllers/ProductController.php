@@ -43,6 +43,7 @@ class ProductController extends Controller
                 'description' => ['required'],
                 'sku' => ['required'],
                 'subcategory_id' => ['required'],
+                'state'=>['required','boolean'],
             ]
         );
 
@@ -56,7 +57,7 @@ class ProductController extends Controller
             'image' => $imageName,
             'description' => $request->description,
             'sku' => $request->sku,
-            'state' => 1,
+            'state' => $request->state ? 1 : 0,
             'subcategory_id' => $request->subcategory_id,
         ]);
 
@@ -102,6 +103,7 @@ class ProductController extends Controller
                 'description' => ['required'],
                 'sku' => ['required'],
                 'subcategory_id' => ['required'],
+                'state'=>['required','boolean'],
             ]
         );
 
@@ -116,6 +118,7 @@ class ProductController extends Controller
         $product->description = $request->description;
         $product->sku = $request->sku;
         $product->subcategory_id = $request->subcategory_id;
+        $product->state=$request->state ? 1 : 0;
 
         $product->save();
 

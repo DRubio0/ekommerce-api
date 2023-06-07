@@ -24,11 +24,7 @@
         </div>
         <div class="w-4/5 bg-white">
             <div class="px-4 py-2">
-                @if ($view == 'dashboard')
-                    <h2 class="text-2xl font-bold">Dashboard View</h2>
-                @else
-                    @yield('content')
-                @endif
+               @yield('content')
             </div>
         </div>
     </div>
