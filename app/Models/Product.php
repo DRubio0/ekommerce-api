@@ -16,7 +16,6 @@ class Product extends Model
         'stock',
         'brand',
         'image',
-        'image_url',
         'description',
         'sku','state',
         'subcategory_id'

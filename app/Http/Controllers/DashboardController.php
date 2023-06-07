@@ -10,6 +10,7 @@ class DashboardController extends Controller
     public function index(Request $request)
     {
         $products = Product::all();
+        $products = Product::paginate(5);
 
         $ProductCount = Product::count();
         $view = $request -> path();

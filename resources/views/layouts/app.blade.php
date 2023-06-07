@@ -12,7 +12,7 @@
 
 <body>
     <div class="flex">
-        <div class="w-1/5 bg-gray-800 text-white h-screen">
+        <div class="w-1/5 bg-gray-800 text-white min-h-screen">
             <ul class="py-4">
                 <li>
                     <a href="{{ route('dashboard') }}" class="block px-4 py-2 hover:bg-gray-700">Dashboard</a>
@@ -22,7 +22,7 @@
                 </li>
             </ul>
         </div>
-        <div class="w-4/5 bg-white">
+        <div class="w-4/5 bg-gradient-to-tl from-blue-700 via-blue-800 to-gray-900">
             <div class="px-4 py-2">
                @yield('content')
             </div>

@@ -5,10 +5,9 @@
 @endsection
 
 @section('content')
-    <div
-        class="flex flex-col justify-center w-full items-center h-screen mx-auto bg-gradient-to-tr from-blue-700 via-blue-800 to-gray-900 gap-6 shadow-2xl">
-        <h1 class="font-bold uppercase text-xl text-white">Product</h1>
-        <div class="bg-white">
+    <div class="my-12">
+        <h1 class="font-bold uppercase text-xl text-center text-white drop-shadow-xl shadow-black mb-12">Products</h1>
+        <div class="bg-blue-100 rounded p-3">
             <div class="overflow-x-auto">
                 <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
                     <div class="overflow-hidden">
@@ -52,7 +51,7 @@
                                             </td>
                                             <th scope="row"
                                                 class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white hover:text-red-500">
-                                                <a href="{{route('product.show',$product->id)}}">
+                                                <a href="{{ route('product.show', $product->id) }}">
                                                     {{ $product->name }}
                                                 </a>
                                             </th>
@@ -72,7 +71,7 @@
                                                 {{ $product->subcategory->name }}
                                             </td>
                                             <td class="flex items-center px-6 py-4 space-x-3">
-                                                
+
                                                 <a href="{{ '/product/' . $product->id . '/edit' }}"
                                                     class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
                                                 <form action="{{ route('product.destroy', $product->id) }}" method="POST">
@@ -96,6 +95,8 @@
                 </div>
             </div>
         </div>
-        <a class="bg-white p-2 rounded hover:bg-blue-100 font-bold" href="{{ route('product.create') }}">New Product</a>
+        <div class="max-w-sm mx-auto">
+            <a class=" my-3 flex items-center justify-center bg-white py-2 px-4 rounded-md shadow-md hover:bg-blue-300 font-bold transition-colors" href="{{ route('product.create') }}">New Product</a>
+        </div>
     </div>
 @endsection
