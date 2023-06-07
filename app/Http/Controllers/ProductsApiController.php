@@ -29,7 +29,8 @@ class ProductsApiController extends Controller
      */
     public function show(string $id)
     {
-        
+        $product = Product::findOrFail($id);
+        return $product;
     }
 
     /**
