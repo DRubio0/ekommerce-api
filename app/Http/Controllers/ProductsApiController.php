@@ -12,7 +12,7 @@ class ProductsApiController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
+        $products = Product::with('subcategory')->get();
         return $products;
     }
 
@@ -29,8 +29,8 @@ class ProductsApiController extends Controller
      */
     public function show(string $id)
     {
-        $product = Product::findOrFail($id);
-        $product->subcategory;
+        $product = Product::where('id', '=', $id)->with('subcategory')->get();
+
         return $product; 
     }
 
