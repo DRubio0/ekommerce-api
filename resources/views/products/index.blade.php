@@ -7,14 +7,14 @@
 @section('content')
     <div class="my-12">
         <h1 class="font-bold uppercase text-xl text-center text-white drop-shadow-xl shadow-black mb-12">Products</h1>
-        <div class="bg-blue-100 rounded p-3">
+        <div class="bg-blue-100/50 rounded p-3">
             <div class="overflow-x-auto">
                 <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
                     <div class="overflow-hidden">
-                        <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-                            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                        <div class="relative overflow-x-auto shadow-md sm:rounded-xl">
+                            <table class="w-full text-sm text-left text-gray-500  dark:text-gray-400">
                                 <thead
-                                    class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                    class="text-xs text-gray-700 uppercase bg-gray-400 dark:bg-gray-700 dark:text-gray-400">
                                     <tr>
                                         <th scope="col" class="px-6 py-3">
                                             ID
@@ -31,9 +31,9 @@
                                         <th scope="col" class="px-6 py-3">
                                             Brand
                                         </th>
-                                        <th scope="col" class="px-6 py-3">
+                                        {{-- <th scope="col" class="px-6 py-3">
                                             SKU
-                                        </th>
+                                        </th> --}}
                                         <th scope="col" class="px-6 py-3">
                                             Subcategory
                                         </th>
@@ -55,23 +55,22 @@
                                                     {{ $product->name }}
                                                 </a>
                                             </th>
-                                            <td class="px-6 py-4">
+                                            <td class="px-2 py-4">
                                                 $ {{ $product->price }}
                                             </td>
-                                            <td class="px-6 py-4">
+                                            <td class="px-2 py-4">
                                                 {{ $product->stock }}
                                             </td>
-                                            <td class="px-6 py-4">
+                                            <td class="px-2 py-4">
                                                 {{ $product->brand }}
                                             </td>
-                                            <td class="px-6 py-4">
+                                            {{-- <td class="px-6 py-4">
                                                 {{ $product->sku }}
-                                            </td>
-                                            <td class="px-6 py-4">
+                                            </td> --}}
+                                            <td class="px-2 py-4">
                                                 {{ $product->subcategory->name }}
                                             </td>
-                                            <td class="flex items-center px-6 py-4 space-x-3">
-
+                                            <td class="flex items-center px-2 py-4 space-x-3">
                                                 <a href="{{ '/product/' . $product->id . '/edit' }}"
                                                     class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
                                                 <form action="{{ route('product.destroy', $product->id) }}" method="POST">
@@ -95,8 +94,9 @@
                 </div>
             </div>
         </div>
-        <div class="max-w-sm mx-auto">
-            <a class=" my-3 flex items-center justify-center bg-white py-2 px-4 rounded-md shadow-md hover:bg-blue-300 font-bold transition-colors" href="{{ route('product.create') }}">New Product</a>
+        <div class="max-w-xs mx-auto">
+            <a class=" my-3 flex items-center justify-center bg-white py-2 px-4 rounded-md shadow-md hover:bg-blue-300 font-bold transition-colors"
+                href="{{ route('product.create') }}">New Product</a>
         </div>
     </div>
 @endsection

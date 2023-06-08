@@ -24,7 +24,7 @@
         </div>
         <div class="w-4/5 bg-gradient-to-tl from-blue-700 via-blue-800 to-gray-900">
             <div class="px-4 py-2">
-               @yield('content')
+                @yield('content')
             </div>
         </div>
     </div>
