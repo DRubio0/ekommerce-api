@@ -11,45 +11,78 @@
 </head>
 
 <body>
+
+
+
     <div class="flex">
         <div class="w-1/6 bg-gray-800  text-white min-h-screen">
             <div class="flex items-center justify-center h-16 bg-gray-900 hover:bg-gray-600">
-               <a href="" class=" w-10 mx-auto">Logo</a>
+                <a href="" class=" w-10 mx-auto">Logo</a>
             </div>
+
+            @if (isset($name))
             <div class="px-4 py-2 text-sm text-gray-400 mt-2">
-                Logged in as - NOMBRE DEL USUARIO (ROL)
-            </div>
-            
+                <p class=" font-bold">
+                    Logged in as - <br>
+                    <a class=" uppercase">
+                        {{ $name }}
+                    </a>
+                </p>
+                Role:
+            </div> 
+            @endif
+
             <ul class="py-4">
                 <li>
                     <a href="{{ route('dashboard') }}" class="block px-4 py-2 hover:bg-gray-700">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" class="h-6 w-6 inline-block mr-2"   viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
-                          </svg>
-                          
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" class="h-6 w-6 inline-block mr-2"
+                            viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+                        </svg>
                         Dashboard
                     </a>
                 </li>
                 <li>
                     <a href="{{ route('product.index') }}" class="block px-4 py-2 hover:bg-gray-700">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block mr-2" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
                         </svg>
                         Product
                     </a>
                 </li>
                 <li>
                     <a href="" class="block px-4 py-2 hover:bg-gray-700">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="h-6 w-6 inline-block mr-2"  stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
-                          </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            class="h-6 w-6 inline-block mr-2" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
                         Users
                     </a>
                 </li>
             </ul>
+
             <div class="flex my-96 mb-0 justify-center items-center h-16 bg-gray-900 hover:bg-gray-600">
-                <a href="" class="w-full text-center text-sm text-gray-400 hover:text-white">Cerrar sesión</a>
+                @guest
+                <a href="{{ route('login') }}" class="w-full text-center text-sm text-gray-400 hover:text-white">Iniciar
+                    sesión</a>
+                @else
+                <form action="{{ route('logout') }}" method="POST"> 
+                    @csrf
+                    <button class="w-full text-center text-sm text-gray-400 hover:text-white">Cerrar
+                        sesión</button>
+                </form>
+                @endguest
             </div>
+
+            {{-- <div class="flex my-96 mb-0 justify-center items-center h-16 bg-gray-900 hover:bg-gray-600">
+                <a href="{{ route('login') }}" class="w-full text-center text-sm text-gray-400 hover:text-white">Cerrar
+                    sesión</a>
+            </div> --}}
+
         </div>
         <div class="w-full bg-gradient-to-tl from-blue-700 via-blue-800 to-gray-900">
             <div class="px-4 py-2">

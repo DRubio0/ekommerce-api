@@ -9,9 +9,8 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
+
     public function showRegisterForm()
     {
         return view('auth.register');
@@ -25,7 +24,7 @@ class AuthController extends Controller
         // $this->validate($request,[
         //     'name'=>'required|max:250',
         //     'email'=>'required|email|max:60|unique:user',
-        //     // 'phone'=> 'required|integer|max20',
+        //     'phone'=> 'required|integer|max20',
         //     'password'=>'required'
         // ]);
 
@@ -57,7 +56,9 @@ class AuthController extends Controller
             'password' => 'required',
         ]);
 
-        if (Auth::attempt($credentials)) {
+        $remember = $request->has('remember');
+
+        if (Auth::attempt($credentials,$remember)) {
             return redirect()->route('dashboard');
         } else {
             return redirect()->route('login')->withErrors([
@@ -67,11 +68,22 @@ class AuthController extends Controller
     }
     public function dashboard(Request $request)
     {
+        $user = Auth::user();
+        $name = $user->name;
+        // $role = $user->roles->name;
         $products = Product::all();
         $products = Product::paginate(5);
 
         $productCount = Product::count();
         $view = $request->path();
-        return view('dashboard', compact('productCount', 'products'));
+        return view('dashboard', compact('name', 'productCount', 'products'));
+    }
+
+    public function logout()
+    {
+        $user = Auth::user();
+        $name = $user->name;
+        Auth::logout();
+         return view('auth.login', compact('name'));
     }
 }
