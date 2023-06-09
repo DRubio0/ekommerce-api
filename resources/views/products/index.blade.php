@@ -31,9 +31,6 @@
                                         <th scope="col" class="px-6 py-3">
                                             Brand
                                         </th>
-                                        {{-- <th scope="col" class="px-6 py-3">
-                                            SKU
-                                        </th> --}}
                                         <th scope="col" class="px-6 py-3">
                                             Subcategory
                                         </th>

@@ -56,7 +56,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="" class="block px-4 py-2 hover:bg-gray-700">
+                    <a href="{{route('user.index')}}" class="block px-4 py-2 hover:bg-gray-700">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                             class="h-6 w-6 inline-block mr-2" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                             <path stroke-linecap="round" stroke-linejoin="round"

@@ -8,8 +8,7 @@
     <div class="grid grid-cols-3 gap-4 mt-4">
         <div class="bg-blue-500 text-white p-4 rounded tex shadow-xl shadow-black">
             <h3 class="text-lg font-bold text-black up">Users</h3>
-            <p
-                class="my-3 mb-0 ml-12 mr-12 p-2 text-2xl rounded bg-blue-600 hover:bg-blue-900 transition-colors uppercase text-center">
+            <p class="my-3 mb-0 ml-12 mr-12 p-2 text-2xl rounded bg-blue-600 hover:bg-blue-900 transition-colors uppercase text-center">
                 12</p>
         </div>
         <div class="bg-green-500 text-white p-4 rounded tex shadow-xl shadow-black">
