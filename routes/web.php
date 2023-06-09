@@ -16,9 +16,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Dashboard Routes
-// Route::get('/',[DashboardController::class,'index'])->name('dashboard');
-
 //Routes for Register and Login
 Route::get('/',[AuthController::class,'dashboard'])->name('dashboard');
 Route::get('/register',[AuthController::class,'showRegisterForm'])->name('register');
@@ -36,3 +33,5 @@ Route::get('/product/{product}/edit', [ProductController::class, 'edit'])->name(
 Route::put('/product/{id}', [ProductController::class, 'update'])->name('product.update');
 Route::patch('/product/{id}', [ProductController::class, 'updateState'])->name('product.status');
 Route::delete('/product/{id}', [ProductController::class, 'destroy'])->name('product.destroy');
+
+//Routes for users

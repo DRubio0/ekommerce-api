@@ -11,8 +11,10 @@
 </head>
 
 <body>
-
-
+    
+    @guest
+        @yield('content')
+    @endguest
 
     <div class="flex">
         <div class="w-1/6 bg-gray-800  text-white min-h-screen">
