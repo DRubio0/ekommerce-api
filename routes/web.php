@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
@@ -16,8 +17,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 //Dashboard Routes
-Route::get('/',[DashboardController::class,'index'])->name('dashboard');
+// Route::get('/',[DashboardController::class,'index'])->name('dashboard');
 
+//Routes for Register and Login
+Route::get('/',[AuthController::class,'dashboard'])->name('dashboard');
+Route::get('/register',[AuthController::class,'showRegisterForm'])->name('register');
+Route::post('/register',[AuthController::class,'register']);
+Route::get('/login',[AuthController::class,'showLoginForm'])->name('login');
+Route::get('/login',[AuthController::class,'login']);
 
 // Routes for products
 Route::get('/product', [ProductController::class, 'index'])->name('product.index');

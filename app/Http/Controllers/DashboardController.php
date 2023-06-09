@@ -7,14 +7,8 @@ use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
-        $products = Product::all();
-        $products = Product::paginate(5);
-
-        $ProductCount = Product::count();
-        $view = $request -> path();
-        return view('dashboard', compact('ProductCount','products'));
- 
+       
     }
 }

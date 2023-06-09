@@ -16,7 +16,7 @@
             <h3 class="text-lg font-bold text-black up">Products</h3>
             <p
                 class="my-3 mb-0 ml-12 mr-12 p-2 text-2xl rounded bg-green-600 hover:bg-green-900 transition-colors uppercase text-center">
-                {{ $ProductCount }}</p>
+                {{ $productCount }}</p>
         </div>
         <div class="bg-yellow-500 text-white p-4 rounded tex shadow-xl shadow-black">
             <h3 class="text-lg font-bold text-black up">Orders</h3>

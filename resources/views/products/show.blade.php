@@ -6,7 +6,7 @@
 
 @section('content')
     <div class="flex justify-center ">
-        <div class="max-w-lg w-auto mt-20 bg-blue-100/20 p-6 rounded-xl">
+        <div class="max-w-lg w-auto mt-3 bg-blue-100/20 p-6 rounded-xl">
 
             <h1 class="font-bold uppercase text-4xl text-center mb-4">Product View</h1>
             <div class="max-w-sm bg-gray-200 border border-gray-200 rounded-2xl">
