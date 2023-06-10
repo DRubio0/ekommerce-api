@@ -76,7 +76,7 @@
                                                     <button
                                                         class="font-medium text-red-600 dark:text-red-500 hover:underline"
                                                         type="submit"
-                                                        onclick="return confirm('¿Estás seguro de que deseas eliminar este producto?')">Delete</button>
+                                                        onclick="return confirm('Are you sure you want to delete this product?')">Delete</button>
                                                 </form>
                                             </td>
                                         </tr>

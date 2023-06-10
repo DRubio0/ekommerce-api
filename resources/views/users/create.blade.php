@@ -7,7 +7,7 @@
 @section('content')
     <div class="flex justify-center ">
         <div class="max-w-lg mt-20 bg-white p-6 rounded-xl">
-            <h2 class="text-black uppercase font-bold text-2xl text-center">Create Product</h2>
+            <h2 class="text-black uppercase font-bold text-2xl text-center">Create User</h2>
             <form class="w-full max-w-lg mt-4" action="{{ route('user.store') }}" method="POST">
                 @csrf
                 <div class="flex items-center">

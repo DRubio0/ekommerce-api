@@ -53,7 +53,7 @@ class UserController extends Controller
             ]
         );
 
-       User::create([
+        User::create([
             'name' => $request->name,
             'last_name' => $request->last_name,
             'email' => $request->email,
@@ -76,9 +76,16 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Request $request, string $id)
     {
-        //
+        $view = $request->path();
+        $roles = Roles::all();
+        $user = User::where('id',$id)->get();
+        return view('users.update',[
+            'user'=>$user[0],
+            'roles' => $roles,
+            'view'=>$view,
+        ]);
     }
 
     /**
@@ -86,7 +93,30 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $this->validate(
+            $request,
+            [
+                'name' => 'required',
+                'last_name' => 'required',
+                'email' => 'required|email',
+                'phone' => 'required|numeric',
+                'password' => 'required|min:6|confirmed',
+                'role_id' => 'required',
+            ]
+        );
+
+        $user = User::findOrFail($id);
+        $user->name = $request->name;
+        $user->last_name = $request->last_name;
+        $user->email = $request->email;
+        $user->phone = $request->phone;
+        $user->password = $request->password;
+        $user->role_id = $request->role_id;
+
+        $user->save();
+        
+        return redirect()->route('user.index');
+        
     }
 
     /**
@@ -94,6 +124,8 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $user = User::findOrFail($id);
+        $user->delete();
+        return redirect()->route('user.index');
     }
 }
