@@ -10,9 +10,24 @@ use Illuminate\Support\Facades\Auth;
 class AuthController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('auth')->except(
+            [
+                'showRegisterForm',
+                'register',
+                'showLoginForm',
+                'login'
+            ]
+        );
+    }
 
     public function showRegisterForm()
     {
+        if(Auth::check()){
+            return redirect()->route('dashboard');
+        }
+
         return view('auth.register');
     }
 
@@ -21,13 +36,7 @@ class AuthController extends Controller
      */
     public function register(Request $request)
     {
-        // $this->validate($request,[
-        //     'name'=>'required|max:250',
-        //     'email'=>'required|email|max:60|unique:user',
-        //     'phone'=> 'required|integer|max20',
-        //     'password'=>'required'
-        // ]);
-
+        
         $user = new User;
         $user->name = $request->name;
         $user->email = $request->email;
@@ -45,6 +54,12 @@ class AuthController extends Controller
 
     public function showLoginForm()
     {
+        
+        if(Auth::check()){
+            return redirect()->route('dashboard');
+        }
+
+
         return view('auth.login');
     }
 
@@ -58,7 +73,7 @@ class AuthController extends Controller
 
         $remember = $request->has('remember');
 
-        if (Auth::attempt($credentials,$remember)) {
+        if (Auth::attempt($credentials, $remember)) {
             return redirect()->route('dashboard');
         } else {
             return redirect()->route('login')->withErrors([
@@ -66,6 +81,7 @@ class AuthController extends Controller
             ]);
         }
     }
+
     public function dashboard(Request $request)
     {
         $user = Auth::user();
@@ -84,6 +100,7 @@ class AuthController extends Controller
         $user = Auth::user();
         $name = $user->name;
         Auth::logout();
-         return view('auth.login', compact('name'));
+        return redirect()->route('login')->with('name',$name);
+        // return view('auth.login', compact('name'));
     }
 }

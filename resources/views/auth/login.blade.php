@@ -1,4 +1,7 @@
 @extends('layouts.app')
+@section('title')
+    Login
+@endsection
 
 @section('content')
     <div class="flex justify-center items-center h-screen bg-gray-100">
