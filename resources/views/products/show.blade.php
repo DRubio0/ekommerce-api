@@ -7,7 +7,6 @@
 @section('content')
     <div class="flex justify-center ">
         <div class="max-w-lg w-auto mt-3 bg-blue-100/20 p-6 rounded-xl">
-
             <h1 class="font-bold uppercase text-4xl text-center mb-4">Product View</h1>
             <div class="max-w-sm bg-gray-200 border border-gray-200 rounded-2xl">
                 <a href="#">
@@ -23,26 +22,25 @@
                         </p>
                         <p class="text-gray-500 uppercase font-bold">
                             SKU: {{ $product->sku }}
-
                         </p>
                     </div>
-                    <div class=" mt-1 bg-gray-200 pl-3 pb-1.5 border-2 border-blue-500 rounded">
+                    <div class=" mt-1 bg-gray-200 hover:bg-gray-300 pl-3 pb-1.5 border-2 border-blue-500 rounded">
                         <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
                         <h4 class=" font-bold text-lg"> Description:</h4>
-                        <p class="text-lg text-blue-500 font-bold">
+                        <p class="text-lg font-bold text-justify">
                             {{ $product->description }}
                         </p>
                         </p>
                     </div>
                     <div class=" mt-1 bg-gray-200 pl-3 pb-1.5 border-2 border-blue-500 rounded">
                         <h4 class=" font-bold text-lg">Price:</h4>
-                        <p class="text-lg text-blue-500 font-bold">
+                        <p class="text-lg  font-bold">
                             $ {{ $product->price }}
                         </p>
                     </div>
                     <div class=" mt-1 mb-2 bg-gray-200 pl-3 pb-1.5 border-2 border-blue-500 rounded">
                         <h4 class=" font-bold text-lg">Category:
-                            <a class="text-lg text-blue-500 font-bold">{{ $product->subcategory->name }} </a>
+                            <a class="text-lg  font-bold">{{ $product->subcategory->name }} </a>
                         </h4>
                     </div>
                     <div class="flex justify-center">
