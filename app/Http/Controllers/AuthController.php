@@ -85,14 +85,16 @@ class AuthController extends Controller
     public function dashboard(Request $request)
     {
         $user = Auth::user();
+
         $name = $user->name;
-        // $role = $user->roles->name;
+        $role = $user->role->name;
         $products = Product::all();
         $products = Product::paginate(5);
 
+        $userCount= User::count();
         $productCount = Product::count();
         $view = $request->path();
-        return view('dashboard', compact('name', 'productCount', 'products'));
+        return view('dashboard', compact('name','role', 'productCount', 'products','userCount'));
     }
 
     public function logout()

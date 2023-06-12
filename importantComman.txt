@@ -13,3 +13,6 @@ php artinsa migrate
 php artisan make:seeder nameSeeders
 php artisan db:seed --class=nameSeeders
 
+/********* Controller ***************/
+
+php artisan make:controller NAME --resource ó --api
