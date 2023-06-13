@@ -8,7 +8,7 @@
     <div class="flex justify-center ">
         <div class="max-w-lg mt-20 bg-white p-6 rounded-xl">
             <h2 class="text-black uppercase font-bold text-2xl text-center">Create User</h2>
-            <form class="w-full max-w-lg mt-4" action="{{ route('user.store') }}" method="POST">
+            <form class="w-full max-w-lg mt-4" action="{{ route('user.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="flex items-center">
                     <div class="w-1/2 pr-2">
@@ -39,6 +39,18 @@
                 </div>
                 <div class="w-full">
                     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                        for="image">Image:</label>
+
+                    <input
+                        class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-6 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                        id="image" name="image" type="file" accept="image/*">
+
+                    @error('image')
+                        <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{ $message }}</p>
+                    @enderror
+                </div>
+                <div class="w-full">
+                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                         for="email">Email:</label>
                     <input
                         class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -53,9 +65,9 @@
                     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="email">Number
                         Phone:</label>
                     <input
-                        class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                        type="number" name="phone" id="phone" value="{{ old('phone') }}"
-                        placeholder="Write your number phone">
+                    class="phone-input appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                    type="tel" name="phone" id="phone" value="{{ old('phone')}}"
+                    placeholder="Write your phone number">
                     @error('phone')
                         <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{ $message }}</p>
                     @enderror

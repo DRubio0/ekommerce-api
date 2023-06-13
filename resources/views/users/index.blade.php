@@ -49,8 +49,10 @@
                                                     {{ $user->id }}
                                                 </td>
                                                 <th scope="row"
-                                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                                    {{ $user->name }}
+                                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white hover:text-red-500">
+                                                    <a href="{{route('user.show',$user->id)}}">
+                                                        {{ $user->name }}
+                                                    </a>
                                                 </th>
                                                 <td class="px-6 py-4">
                                                     {{ $user->last_name }}

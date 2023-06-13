@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Roles;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -47,11 +48,14 @@ class UserController extends Controller
                 'name' => 'required',
                 'last_name' => 'required',
                 'email' => 'required|email',
-                'phone' => 'required|numeric',
+                'phone' => 'required|regex:/^\(\d{3}\) \d{4}-\d{4}$/',
                 'password' => 'required|min:6|confirmed',
                 'role_id' => 'required',
+                'image' => 'required|image'
             ]
         );
+
+        $imageName = $request->file('image')->store('img_users', 'public');
 
         User::create([
             'name' => $request->name,
@@ -60,6 +64,7 @@ class UserController extends Controller
             'phone' => $request->phone,
             'password' => bcrypt($request->password),
             'role_id' => $request->role_id,
+            'image' => $imageName,
         ]);
 
         return redirect()->route('user.index');
@@ -68,9 +73,19 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $id, Request $request)
     {
-        //
+
+        $view = $request->path();
+        $user = User::findOrFail($id);
+        return view(
+            'users.show',
+            [
+                'user' => $user,
+                'view' => $view,
+
+            ]
+        );
     }
 
     /**
@@ -80,11 +95,11 @@ class UserController extends Controller
     {
         $view = $request->path();
         $roles = Roles::all();
-        $user = User::where('id',$id)->get();
-        return view('users.update',[
-            'user'=>$user[0],
+        $user = User::where('id', $id)->get();
+        return view('users.update', [
+            'user' => $user[0],
             'roles' => $roles,
-            'view'=>$view,
+            'view' => $view,
         ]);
     }
 
@@ -99,11 +114,13 @@ class UserController extends Controller
                 'name' => 'required',
                 'last_name' => 'required',
                 'email' => 'required|email',
-                'phone' => 'required|numeric',
+                'phone' => 'required|regex:/^\(\d{3}\) \d{4}-\d{4}$/',
                 'password' => 'required|min:6|confirmed',
                 'role_id' => 'required',
+                'image' => 'nullable|image',
             ]
         );
+
 
         $user = User::findOrFail($id);
         $user->name = $request->name;
@@ -113,10 +130,20 @@ class UserController extends Controller
         $user->password = $request->password;
         $user->role_id = $request->role_id;
 
+        $imageName=null;
+
+        if ($request->hasFile('image')) {
+            if ($user->image) {
+                Storage::delete('public/' . $user->image);
+            }
+            $imageName = $request->file('image')->store('img_users', 'public');
+            $user->image = $imageName ?? '';
+        }
+
         $user->save();
-        
+
         return redirect()->route('user.index');
-        
+
     }
 
     /**
