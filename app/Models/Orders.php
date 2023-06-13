@@ -13,4 +13,9 @@ class Orders extends Model
         'total',
         'order_state'
     ];
+
+    public function products()
+    {
+        return $this->belongsToMany(Product::class, 'order_product')->withPivot('quantity');
+    }
 }
