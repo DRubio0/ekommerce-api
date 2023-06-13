@@ -29,7 +29,7 @@
     @endguest
 
     <div class="flex">
-        <div class="w-1/6 bg-gray-800  text-white min-h-screen">
+        <div class="w-1/5  bg-gray-800  text-white min-h-screen">
             <div class="flex items-center justify-center h-16 bg-gray-900 hover:bg-gray-600">
                 <a href="" class=" w-10 mx-auto">Logo</a>
             </div>

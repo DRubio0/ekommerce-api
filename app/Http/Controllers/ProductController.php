@@ -5,17 +5,23 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\Subcategories;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
     public function index(Request $request)
     {
+        $user = Auth::user();
         $view = $request->path();
+        $name = $user->name;
+        $role = $user->role->name;
 
         $products = Product::paginate(3);
         return view('products.index', [
             'products' => $products,
             'view' => $view,
+            'name' => $name,
+            'role' => $role,
         ]);
     }
 
