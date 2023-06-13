@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Roles;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
@@ -14,6 +15,9 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
+        $user = Auth::user();
+        $name = $user->name;
+        $role = $user->role->name;
         $view = $request->path();
 
         $users = User::paginate(3);
@@ -21,6 +25,8 @@ class UserController extends Controller
         return view('users.index', [
             'users' => $users,
             'view' => $view,
+            'name' => $name,
+            'role' => $role,
         ]);
     }
 

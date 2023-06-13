@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Orders;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OrdersController extends Controller
 {
@@ -12,12 +13,17 @@ class OrdersController extends Controller
      */
     public function index(Request $request)
     {
+        $user = Auth::user();
+        $name = $user->name;
+        $role = $user->role->name;
         $view = $request->path();
 
         $order = Orders::paginate(3);
         return view('orders.index',[
             'order'=>$order,
             'view'=>$view,
+            'name'=>$name,
+            'role'=>$role,
         ]);
     }
 

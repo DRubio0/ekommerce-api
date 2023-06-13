@@ -31,13 +31,16 @@
     <div class="flex">
         <div class="w-1/5  bg-gray-800  text-white min-h-screen">
             <div class="flex items-center justify-center h-16 bg-gray-900 hover:bg-gray-600">
-                <a href="" class=" w-10 mx-auto">Logo</a>
+                <a href="" class="w-20 flex items-center mx-auto">
+                    <img src="{{ asset('logo.png')}}" alt="logo">
+                    {{-- <span class="ml-2">eKommerce</span> --}}
+                </a>
             </div>
 
             @if (isset($name))
             <div class="px-4 py-2 text-sm text-gray-400 mt-2">
                 <p class=" font-bold">
-                    Welcome - <br>
+                    Welcome -   
                     <a class=" uppercase">
                         {{ $name }} <br>
                         {{$role}}
