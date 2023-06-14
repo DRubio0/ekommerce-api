@@ -4,9 +4,9 @@
 @endsection
 
 @section('content')
-    <div class="flex justify-center items-center h-screen bg-gray-100">
+    <div class="flex justify-center items-center h-screen from-gray-900 to-gray-600 bg-gradient-to-r">
         <div class="bg-white p-8 rounded shadow-md">
-            <h1 class="text-2xl font-bold mb-4">Login</h1>
+            <h1 class=" text-center text-2xl font-bold mb-4">Login</h1>
 
             @if ($errors->any())
                 <div class="alert alert-danger">

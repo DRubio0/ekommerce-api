@@ -24,7 +24,7 @@ class AuthController extends Controller
 
     public function showRegisterForm()
     {
-        if(Auth::check()){
+        if (Auth::check()) {
             return redirect()->route('dashboard');
         }
 
@@ -36,7 +36,15 @@ class AuthController extends Controller
      */
     public function register(Request $request)
     {
-        
+        $this->validate($request, [
+            'name' => 'required',
+            'lastname' => 'required',
+            'email' => 'required|email',
+            'phone' => 'required|regex:/^\(\d{3}\) \d{4}-\d{4}$/',
+            'password' => 'required|min:6|confirmed',
+            'image' => 'required|image'
+        ]);
+
         $user = new User;
         $user->name = $request->name;
         $user->email = $request->email;
@@ -44,7 +52,7 @@ class AuthController extends Controller
         $user->password = bcrypt($request->password);
         $user->last_name = $request->lastname;
         $user->role_id = 1;
-        $user->image=$request->image;
+        $user->image = $request->image;
         $user->save();
 
         Auth::login($user);
@@ -55,8 +63,8 @@ class AuthController extends Controller
 
     public function showLoginForm()
     {
-        
-        if(Auth::check()){
+
+        if (Auth::check()) {
             return redirect()->route('dashboard');
         }
 
@@ -92,10 +100,10 @@ class AuthController extends Controller
         $products = Product::all();
         $products = Product::paginate(5);
 
-        $userCount= User::count();
+        $userCount = User::count();
         $productCount = Product::count();
         $view = $request->path();
-        return view('dashboard', compact('name','role', 'productCount', 'products','userCount'));
+        return view('dashboard', compact('name', 'role', 'productCount', 'products', 'userCount'));
     }
 
     public function logout()
@@ -103,7 +111,7 @@ class AuthController extends Controller
         $user = Auth::user();
         $name = $user->name;
         Auth::logout();
-        return redirect()->route('login')->with('name',$name);
+        return redirect()->route('login')->with('name', $name);
         // return view('auth.login', compact('name'));
     }
 }
