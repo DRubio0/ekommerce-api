@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\OrderProduct;
 use Carbon\Carbon;
 use App\Models\Orders;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class OrdersApiController extends Controller
@@ -45,6 +46,10 @@ class OrdersApiController extends Controller
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ];
+
+            $productUpdated = Product::findOrFail($product['id']);
+            $productUpdated->stock = $productUpdated->stock - $product['quantity'];
+            $productUpdated->save();
         }
 
         // Almacenar en la DB
