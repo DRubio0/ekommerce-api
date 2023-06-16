@@ -42,7 +42,7 @@ class ProductController extends Controller
             $request,
             [
                 'name' => ['required'],
-                'price' => ['required'],
+                'price' => ['required', 'max:99999.99', 'decimal:0,2', 'min:0'],
                 'stock' => ['required'],
                 'brand' => ['required'],
                 'image'=>['required', 'image'],
@@ -101,27 +101,29 @@ class ProductController extends Controller
             $request,
             [
                 'name' => ['required'],
-                'price' => ['required'],
+                'price' => ['required', 'max:99999.99', 'decimal:0,2', 'min:0'],
                 'stock' => ['required'],
                 'brand' => ['required'],
-                'image'=>['required', 'image'],
                 'description' => ['required'],
                 'sku' => ['required'],
                 'subcategory_id' => ['required'],
             ]
         );
 
-        $imageName = $request->file('image')->store('img_product', 'public');
-
         $product = Product::findOrFail($id);
         $product->name = $request->name;
         $product->price = $request->price;
         $product->stock = $request->stock;
-        $product->brand = $request->brand;
-        $product->image = $imageName;
+        $product->brand = $request->brand;  
         $product->description = $request->description;
         $product->sku = $request->sku;
         $product->subcategory_id = $request->subcategory_id;
+
+        if($request->file('image'))
+        {
+            $imageName = $request->file('image')->store('img_product', 'public');
+            $product->image = $imageName;
+        }
 
         $product->save();
 

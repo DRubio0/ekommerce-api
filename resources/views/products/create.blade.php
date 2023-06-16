@@ -33,7 +33,7 @@
 
                         <input
                             class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                            id="price" name="price" type="number" placeholder="Price" value="{{ old('price') }}">
+                            id="price" name="price" type="number" placeholder="Price" value="{{ old('price') }}" step="0.01" min="0" max="99999.99">
 
                         @error('price')
                             <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{ $message }}</p>

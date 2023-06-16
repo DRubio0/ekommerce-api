@@ -20,7 +20,7 @@ class ProductSeeder extends Seeder
                     'price' => '250',
                     'stock' => '50',
                     'brand' => 'DELL',
-                    'image' => 'url de imagen',
+                    'image' => '',
                     'description' => 'articles related to desktop computers are stored',
                     'sku' => 'KSE1255',
                     'state' =>1,

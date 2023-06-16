@@ -5,30 +5,29 @@
 @endsection
 
 @section('content')
-    <div class="flex justify-center ">
+    <div class="flex justify-center items-center min-h-screen">
         <div class="max-w-lg w-auto mt-3 bg-blue-100/20 p-6 rounded-xl">
-            
-            <h1 class="font-bold uppercase text-4xl text-center mb-4">Show Product {{$product->id}}</h1>
-            <div
-                class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                <a href="#">
-                    <img class="p-8 rounded-t-lg" src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}"/>
-                </a>
+            <h1 class="font-bold uppercase text-4xl text-center mb-4 text-white">Showing Product {{$product->id}}</h1>
+
+            <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                <div>
+                    <img class="p-8 rounded-t-lg text-white" src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" />
+                </div>
+
                 <div class="px-5 pb-5">
-                    <a href="#">
-                        <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">{{ $product->name}}</h5>
-                    </a>
+                    <p class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">{{ $product->name}}</p>
+
                     <div class="flex  mt-2.5 mb-5 justify-between items-center">
-                        <div>
-                            Brand: {{$product->brand}} 
-                        </div>
-                        <div>
-                            Category: {{$product->subcategory->name}}
-                        </div>
+                        <p class="text-gray-900 dark:text-white">Brand: {{$product->brand}}</p> 
+                        
+                        
+                        <p class="text-gray-900 dark:text-white">Category: {{$product->subcategory->name}}</p>
                     </div>
-                    <div class="flex items-center mt-2.5 mb-5 text-justify lowercase font-bold">
-                        {{$product->description}}
+
+                    <div class="flex items-center mt-2.5 mb-5">
+                        <p class="text-gray-900 dark:text-white font-bold">{{$product->description}}</p>
                     </div>
+
                     <div class="flex items-center justify-between">
                         <span class="text-3xl font-bold text-gray-900 dark:text-white">${{$product->price}}</span>
                         <a href="{{route('product.index')}}"
