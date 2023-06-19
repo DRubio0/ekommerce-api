@@ -121,7 +121,6 @@ class UserController extends Controller
                 'last_name' => 'required',
                 'email' => 'required|email',
                 'phone' => 'required|regex:/^\(\d{3}\) \d{4}-\d{4}$/',
-                'password' => 'required|min:6|confirmed',
                 'role_id' => 'required',
                 'image' => 'nullable|image',
             ]
@@ -133,9 +132,12 @@ class UserController extends Controller
         $user->last_name = $request->last_name;
         $user->email = $request->email;
         $user->phone = $request->phone;
-        $user->password = $request->password;
+        if($request->password)
+        {
+            $user->password = $request->password;
+        }
         $user->role_id = $request->role_id;
-
+        
         $imageName=null;
 
         if ($request->hasFile('image')) {

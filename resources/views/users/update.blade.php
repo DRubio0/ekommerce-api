@@ -43,14 +43,12 @@
                 </div>
 
                 <div class="w-full">
-                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 text-center mt-4"
                         for="image">Image:</label>
                     @if ($user->image)
                         <div class="flex items-center">
                             <img src="{{ asset('storage/' . $user->image) }}" alt="Current Image"
-                                class="mb-4 w-48 rounded-full">
-                            <p class="text-gray-700 text-sm ml-4 truncate">Currently uploaded image: <br>
-                                {{ $user->image }}</p>
+                                class="mb-4 w-48 mx-auto">
                         </div>
                     @endif
                     <input

@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Models\Subcategories;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -121,6 +122,7 @@ class ProductController extends Controller
 
         if($request->file('image'))
         {
+            Storage::disk('public')->delete($product->image);
             $imageName = $request->file('image')->store('img_product', 'public');
             $product->image = $imageName;
         }
