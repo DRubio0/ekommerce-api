@@ -43,7 +43,11 @@ Route::middleware('auth')->group(function () {
     Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('user.destroy');
 
     //Routes for Orders
-    Route::get('/order', [OrdersController::class, 'index'])->name('order.index');
+    Route::get('/order', [OrdersController::class, 'index'])->name('orders.index');
+    Route::get('/order/{order}/edit',[OrdersController::class,'edit'])->name('orders.edit');
+    Route::get('/order/{id}',[OrdersController::class,'show'])->name('orders.show');
+    Route::put('/order/{id}',[OrdersController::class,'update'])->name('orders.update');
+    Route::delete('/order/{id}',[OrdersController::class,'destroy'])->name('orders.destroy');
 });
 
 //Routes for Register and Login

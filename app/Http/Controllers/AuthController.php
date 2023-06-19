@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Orders;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -98,12 +99,13 @@ class AuthController extends Controller
         $name = $user->name;
         $role = $user->role->name;
         $products = Product::all();
-        $products = Product::paginate(5);
+        $products = Product::paginate(4);
 
         $userCount = User::count();
         $productCount = Product::count();
+        $orderCount = Orders::count();
         $view = $request->path();
-        return view('dashboard', compact('name', 'role', 'productCount', 'products', 'userCount'));
+        return view('dashboard', compact('name', 'role', 'productCount', 'products', 'userCount','orderCount'));
     }
 
     public function logout()

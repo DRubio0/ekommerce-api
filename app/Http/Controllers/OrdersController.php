@@ -18,12 +18,12 @@ class OrdersController extends Controller
         $role = $user->role->name;
         $view = $request->path();
 
-        $order = Orders::paginate(3);
-        return view('orders.index',[
-            'order'=>$order,
-            'view'=>$view,
-            'name'=>$name,
-            'role'=>$role,
+        $orders = Orders::paginate(3);
+        return view('orders.index', [
+            'orders' => $orders,
+            'view' => $view,
+            'name' => $name,
+            'role' => $role,
         ]);
     }
 
@@ -48,15 +48,18 @@ class OrdersController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $order = Orders::findOrFail($id);
+
+    return view('orders.show', compact('order'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $id, Request $request)
     {
-        //
+        $order = Orders::find($id);
+        return view('orders.update', compact('order'));
     }
 
     /**
@@ -64,7 +67,19 @@ class OrdersController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $order = Orders::find($id);
+
+        $newState = strtolower(trim($request->input('order_sent')));
+        $allowStates = ['completed', 'finished', 'stand-by', 'inprogress'];
+        if (!in_array($newState, $allowStates)) {
+            return redirect()->back()->withErrors('Invalid state provided.');
+        }
+
+
+        $order->order_sent = $newState;
+        $order->save();
+
+        return redirect()->route('orders.index');
     }
 
     /**
@@ -72,6 +87,8 @@ class OrdersController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $order = Orders::findOrFail($id);
+        $order->delete();
+        return redirect()->route('orders.index');
     }
 }

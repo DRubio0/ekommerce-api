@@ -78,7 +78,6 @@
                                     <path stroke-linecap="round" stroke-linejoin="round"
                                         d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" />
                                 </svg>
-
                                 Products
                             </a>
                         </li>
@@ -93,14 +92,13 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{{ route('order.index') }}" class="block px-4 py-2 hover:bg-gray-700">
+                            <a href="{{ route('orders.index') }}" class="block px-4 py-2 hover:bg-gray-700">
 
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block mr-2" fill="none"
                                     viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round"
                                         d="M19.5 12c0-1.232-.046-2.453-.138-3.662a4.006 4.006 0 00-3.7-3.7 48.678 48.678 0 00-7.324 0 4.006 4.006 0 00-3.7 3.7c-.017.22-.032.441-.046.662M19.5 12l3-3m-3 3l-3-3m-12 3c0 1.232.046 2.453.138 3.662a4.006 4.006 0 003.7 3.7 48.656 48.656 0 007.324 0 4.006 4.006 0 003.7-3.7c.017-.22.032-.441.046-.662M4.5 12l3 3m-3-3l-3 3" />
                                 </svg>
-
                                 Orders
                             </a>
                         </li>
@@ -113,7 +111,7 @@
                         @else
                             <form action="{{ route('logout') }}" method="POST">
                                 @csrf
-                                <button class="w-full text-center text-sm text-gray-400 hover:text-white flex mt-auto mb-0 justify-center items-center h-16 bg-gray-900 hover:bg-gray-600 cursor-pointer">Sign Out</button>
+                                <button class="w-full text-center text-sm text-gray-400 hover:text-white flex mt-auto mb-5 justify-center items-center h-16 bg-gray-900 hover:bg-gray-600 cursor-pointer">Sign Out</button>
                             </form>
                         @endguest
                     </div>

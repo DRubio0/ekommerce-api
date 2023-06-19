@@ -19,13 +19,13 @@
         </div>
         <div class="bg-yellow-500 text-white p-4 rounded tex shadow-xl shadow-black">
             <h3 class="text-lg font-bold text-black up">Orders</h3>
-            <p
-                class="my-3 mb-0 ml-12 mr-12 p-2 text-2xl rounded bg-yellow-600 hover:bg-yellow-900 transition-colors uppercase text-center">
-                12</p>
+            <p class="my-3 mb-0 ml-12 mr-12 p-2 text-2xl rounded bg-yellow-600 hover:bg-yellow-900 transition-colors uppercase text-center">
+            {{$orderCount}}
+            </p>
         </div>
     </div>
 
-    <h2 class="mt-20 mb-5 text-2xl font-bold text-white">Product Registers</h2>
+    <h2 class="my-7 mb-5 text-2xl font-bold text-white">Product Registers</h2>
 
 
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
