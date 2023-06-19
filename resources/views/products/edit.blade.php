@@ -109,7 +109,7 @@
                 <div class="w-full">
                     <p class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 text-center mt-10">Imagen Actual</p>
 
-                    <div class="w-52 mx-auto">
+                    <div class="">
                         <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" />
                     </div>
                     
