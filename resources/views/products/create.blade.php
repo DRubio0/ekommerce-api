@@ -89,7 +89,7 @@
 
                         <textarea
                             class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                            id="description" name="description" rows="5" placeholder="" value="{{ old('description') }}"></textarea>
+                            id="description" name="description" rows="5" placeholder="Description">{{ old('description') }}</textarea>
 
                         @error('description')
                             <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{ $message }}</p>
@@ -108,9 +108,11 @@
                             <option value="" selected disabled>-- Select --</option>
 
                             @foreach ($subcategories as $subcategory)
-                                <option value="{{ $subcategory->id }}">{{ $subcategory->name }}</option>
+                                <option value="{{ $subcategory->id }}" >{{ $subcategory->name }} {{old('subcategory_id') == $subcategory->id ? 'selected' : ''}}</option>
                             @endforeach
                         </select>
+
+                        
 
                         <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                             <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
