@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Categories;
+use App\Models\Subcategories;
 use Illuminate\Http\Request;
 
 class CategoriesApiController extends Controller
@@ -13,6 +14,7 @@ class CategoriesApiController extends Controller
     public function index()
     {
         $categories = Categories::all();
+        $categories->load('subcategories');
         return response()->json($categories);
     }
 

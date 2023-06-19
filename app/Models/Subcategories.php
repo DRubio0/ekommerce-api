@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Subcategories extends Model
 {
     use HasFactory;
+
+    public function category()
+    {
+        return $this->hasMany(Categories::class,'category_id');
+    }
 }
