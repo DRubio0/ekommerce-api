@@ -121,7 +121,7 @@
                         href="{{ route('user.index') }}">Cancel</a>
                     <input
                         class="bg-blue-500 p-3 rounded md:w-1/2 justify-end text-white font-bold uppercase m-1 hover:bg-blue-700 transition-colors cursor-pointer"
-                        type="submit" value="Save Product">
+                        type="submit" value="Save User">
                 </div>
             </form>
 
