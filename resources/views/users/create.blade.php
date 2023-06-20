@@ -66,7 +66,7 @@
                         Phone:</label>
                     <input
                     class="phone-input appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                    type="tel" name="phone" id="phone" value="{{ old('phone')}}"
+                    type="tel" name="phone" id="phone" value="{{ old('phone', '503')}}"
                     placeholder="Write your phone number">
                     @error('phone')
                         <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{ $message }}</p>

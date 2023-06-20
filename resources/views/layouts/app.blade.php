@@ -43,7 +43,6 @@
                 <div class="flex items-center justify-center h-16 bg-gray-900 hover:bg-gray-600">
                     <a href="" class="w-20 flex items-center mx-auto">
                         <img src="{{ asset('logo.png') }}" alt="logo">
-                        {{-- <span class="ml-2">eKommerce</span> --}}
                     </a>
                 </div>
 
