@@ -4,6 +4,7 @@ use App\Http\Controllers\CategoriesApiController;
 use App\Http\Controllers\OrdersApiController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductsApiController;
+use App\Http\Controllers\UserApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -32,3 +33,6 @@ Route::post('/orders', [OrdersApiController::class, 'store']);
 
 // Categories
 Route::get('/categories',[CategoriesApiController::class,'index']);
+
+//Users
+Route::get('/users',[UserApiController::class,'index']);
