@@ -20,7 +20,7 @@ class UserController extends Controller
         $role = $user->role->name;
         $view = $request->path();
 
-        $users = User::paginate(3);
+        $users = User::paginate(4);
 
         return view('users.index', [
             'users' => $users,
