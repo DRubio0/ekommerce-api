@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApiAuthController;
 use App\Http\Controllers\CategoriesApiController;
 use App\Http\Controllers\OrdersApiController;
 use App\Http\Controllers\ProductController;
@@ -19,9 +20,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    // return $request->user();
+Route::middleware('auth:sanctum')->group(function() 
+{
+    Route::get('/user', function (Request $request) {
+        return $request->user();
+    });
+
+    Route::post('/logout', [ApiAuthController::class, 'logout']);
 });
+
+
 
 // Products
 Route::get('/products', [ProductsApiController::class, 'index']);
@@ -36,3 +44,7 @@ Route::get('/categories',[CategoriesApiController::class,'index']);
 
 //Users
 Route::get('/users',[UserApiController::class,'index']);
+
+// Authentication
+Route::post('/register', [ApiAuthController::class, 'register']);
+Route::post('/login', [ApiAuthController::class, 'login']);
