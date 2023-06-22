@@ -69,9 +69,9 @@ Orders
                         </table>
                     </div>
                 </div>
-                {{-- <div class="pagination-container mt-3">
-                    {{ $products->links('pagination::tailwind') }}
-                </div> --}}
+                <div class="pagination-container mt-3">
+                    {{ $orders->links('pagination::tailwind') }}
+                </div>
             </div>
         </div>
     </div>

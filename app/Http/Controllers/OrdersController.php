@@ -18,7 +18,7 @@ class OrdersController extends Controller
         $role = $user->role->name;
         $view = $request->path();
 
-        $orders = Orders::paginate(3);
+        $orders = Orders::paginate(6);
         return view('orders.index', [
             'orders' => $orders,
             'view' => $view,

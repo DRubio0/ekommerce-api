@@ -17,7 +17,7 @@ class ProductController extends Controller
         $name = $user->name;
         $role = $user->role->name;
 
-        $products = Product::paginate(5);
+        $products = Product::paginate(6);
         return view('products.index', [
             'products' => $products,
             'view' => $view,
