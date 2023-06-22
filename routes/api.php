@@ -22,25 +22,25 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->group(function() 
 {
-    Route::get('/user', function (Request $request) {
+    // User
+    Route::get('/user', function (Request $request) 
+    {
         return $request->user();
     });
-
     Route::post('/logout', [ApiAuthController::class, 'logout']);
+
+    
+    // Products
+    Route::get('/products', [ProductsApiController::class, 'index']);
+    Route::get('/product/{product}', [ProductsApiController::class, 'show']);
+
+    // Categories
+    Route::get('/categories',[CategoriesApiController::class,'index']);
+
+    // Orders
+    Route::get('/orders', [OrdersApiController::class, 'index']);
+    Route::post('/orders', [OrdersApiController::class, 'store']);
 });
-
-
-
-// Products
-Route::get('/products', [ProductsApiController::class, 'index']);
-Route::get('/product/{product}', [ProductsApiController::class, 'show']);
-
-// Orders
-Route::get('/orders', [OrdersApiController::class, 'index']);
-Route::post('/orders', [OrdersApiController::class, 'store']);
-
-// Categories
-Route::get('/categories',[CategoriesApiController::class,'index']);
 
 //Users
 Route::get('/users',[UserApiController::class,'index']);
