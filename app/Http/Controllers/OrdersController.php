@@ -48,9 +48,11 @@ class OrdersController extends Controller
      */
     public function show(string $id)
     {
-        $order = Orders::findOrFail($id);
+        $order = Orders::with('user')->findOrFail($id);
 
-    return view('orders.show', compact('order'));
+       
+
+            return view('orders.show', compact('order'));
     }
 
     /**
