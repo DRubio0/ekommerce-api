@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\LoginRequest;
-use App\Http\Requests\RegisterRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Requests\LoginRequest;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\RegisterRequest;
+use Illuminate\Support\Facades\Storage;
 
 class ApiAuthController extends Controller
 {
@@ -61,5 +62,35 @@ class ApiAuthController extends Controller
         return [
             'user' => null
         ];
+    }
+
+    public function update(Request $request)
+    {
+        $user = User::findOrFail($request->user()->id);
+
+        $user->name = $request->name ? $request->name : $user->name;
+        $user->last_name = $request->last_name ? $request->last_name : $user->last_name;
+        $user->phone = $request->phone ? $request->phone : $user->phone;
+        $user->email = $request->email ? $request->email : $user->email;
+        
+        $user->save();
+        
+        return ['message' => 'User edited successfully'];
+    }
+
+    public function updateImage(Request $request)
+    {
+        if($request->hasFile('image'))
+        {
+            $user = User::findOrFail($request->user()->id);
+
+            Storage::disk('public')->delete($user->image);
+            $imageName = $request->file('image')->store('img_users', 'public');
+            $user->image = $imageName;
+
+            $user->save();
+        }
+
+        return ['message' => 'Photo edited successfully'];
     }
 }

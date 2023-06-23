@@ -27,6 +27,8 @@ Route::middleware('auth:sanctum')->group(function()
     {
         return $request->user();
     });
+    Route::post('/user', [ApiAuthController::class, 'updateImage']);
+    Route::patch('/user', [ApiAuthController::class, 'update']);
     Route::post('/logout', [ApiAuthController::class, 'logout']);
 
     
