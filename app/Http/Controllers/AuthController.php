@@ -13,14 +13,7 @@ class AuthController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth')->except(
-            [
-                'showRegisterForm',
-                'register',
-                'showLoginForm',
-                'login'
-            ]
-        );
+        $this->middleware('auth')->only('dashboard','logout');
     }
 
     public function showRegisterForm()
@@ -95,7 +88,7 @@ class AuthController extends Controller
     public function dashboard(Request $request)
     {
         $user = Auth::user();
-
+        
         $name = $user->name;
         $role = $user->role->name;
         $products = Product::all();
@@ -114,6 +107,5 @@ class AuthController extends Controller
         $name = $user->name;
         Auth::logout();
         return redirect()->route('login')->with('name', $name);
-        // return view('auth.login', compact('name'));
     }
 }

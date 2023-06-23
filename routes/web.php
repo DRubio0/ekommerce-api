@@ -17,10 +17,16 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+//Routes for Register and Login
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
+Route::post('/register', [AuthController::class, 'register']);
+
 //Routes Privates
-Route::middleware('auth')->group(function () {
-
-
+Route::middleware(['auth','admin'])->group(function () {
     Route::get('/', [AuthController::class, 'dashboard'])->name('dashboard');
 
     // Routes for products
@@ -50,9 +56,3 @@ Route::middleware('auth')->group(function () {
     Route::delete('/order/{id}',[OrdersController::class,'destroy'])->name('orders.destroy');
 });
 
-//Routes for Register and Login
-Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
-Route::post('/login', [AuthController::class, 'login']);
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
-Route::post('/register', [AuthController::class, 'register']);
