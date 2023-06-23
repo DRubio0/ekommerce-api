@@ -110,7 +110,7 @@
                         @else
                             <form action="{{ route('logout') }}" method="POST">
                                 @csrf
-                                <button class="w-full text-center text-sm text-gray-400 hover:text-white flex mt-auto mb-5 justify-center items-center h-16 bg-gray-900 hover:bg-gray-600 cursor-pointer">Sign Out</button>
+                                <button class="w-full text-center text-sm text-gray-400 hover:text-white flex justify-center items-center h-16 bg-gray-900 hover:bg-gray-600 cursor-pointer">Sign Out</button>
                             </form>
                         @endguest
                     </div>
