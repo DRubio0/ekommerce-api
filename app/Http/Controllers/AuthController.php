@@ -45,7 +45,7 @@ class AuthController extends Controller
         $user->phone = $request->phone;
         $user->password = bcrypt($request->password);
         $user->last_name = $request->lastname;
-        $user->role_id = 1;
+        $user->role_id = 4;
         $user->image = $request->image;
         $user->save();
 
