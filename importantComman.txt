@@ -21,3 +21,5 @@ php artisan make:controller NAME --resource ó --api
 php artinsa storage:link
 
 php artisan key:generate
+
+Git init
