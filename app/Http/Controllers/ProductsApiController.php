@@ -12,7 +12,7 @@ class ProductsApiController extends Controller
      */
     public function index()
     {
-        $products = Product::where('stock', '>=', 1)->with('subcategory')->get();
+        $products = Product::where('stock', '>=', 1)->where('state', '=', 1)->with('subcategory')->get();
         return $products;
     }
 
