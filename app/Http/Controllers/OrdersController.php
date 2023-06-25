@@ -16,12 +16,10 @@ class OrdersController extends Controller
         $user = Auth::user();
         $name = $user->name;
         $role = $user->role->name;
-        $view = $request->path();
-
+    
         $orders = Orders::paginate(6);
         return view('orders.index', [
             'orders' => $orders,
-            'view' => $view,
             'name' => $name,
             'role' => $role,
         ]);

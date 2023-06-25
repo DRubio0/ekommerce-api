@@ -13,14 +13,12 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         $user = Auth::user();
-        $view = $request->path();
         $name = $user->name;
         $role = $user->role->name;
 
         $products = Product::paginate(6);
         return view('products.index', [
             'products' => $products,
-            'view' => $view,
             'name' => $name,
             'role' => $role,
         ]);
@@ -28,12 +26,10 @@ class ProductController extends Controller
 
     public function create(Request $request)
     {
-        $view = $request->path();
         $subcategories = Subcategories::all();
 
         return view('products.create', [
-            'subcategories' => $subcategories,
-            'view' => $view
+            'subcategories' => $subcategories
         ]);
     }
 
@@ -72,27 +68,24 @@ class ProductController extends Controller
 
     public function show(Request $request,string $id)
     {
-        $view = $request->path();
+
         $product = Product::findOrFail($id);
         return view(
             'products.show',
             [
-                'product' => $product,
-                'view'=>$view,
+                'product' => $product
             ]
         );
     }
 
     public function edit(Request $request, string $id)
     {
-        $view = $request->path();
         $subcategories = Subcategories::all();
         $product = Product::where('id', $id)->get();
 
         return view('products.edit', [
             'product' => $product[0],
-            'subcategories' => $subcategories,
-            'view'=>$view
+            'subcategories' => $subcategories
         ]);
     }
 

@@ -97,7 +97,7 @@ class AuthController extends Controller
         $userCount = User::count();
         $productCount = Product::count();
         $orderCount = Orders::count();
-        $view = $request->path();
+    
         return view('dashboard', compact('name', 'role', 'productCount', 'products', 'userCount','orderCount'));
     }
 

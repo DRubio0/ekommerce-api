@@ -18,13 +18,11 @@ class UserController extends Controller
         $user = Auth::user();
         $name = $user->name;
         $role = $user->role->name;
-        $view = $request->path();
 
         $users = User::paginate(6);
 
         return view('users.index', [
             'users' => $users,
-            'view' => $view,
             'name' => $name,
             'role' => $role,
         ]);
@@ -35,11 +33,11 @@ class UserController extends Controller
      */
     public function create(Request $request)
     {
-        $view = $request->path();
+       
         $roles = Roles::all();
         return view('users.create', [
             'roles' => $roles,
-            'view' => $view,
+       
         ]);
     }
 
@@ -82,14 +80,12 @@ class UserController extends Controller
     public function show(string $id, Request $request)
     {
 
-        $view = $request->path();
+    
         $user = User::findOrFail($id);
         return view(
             'users.show',
             [
-                'user' => $user,
-                'view' => $view,
-
+                'user' => $user
             ]
         );
     }
@@ -99,13 +95,11 @@ class UserController extends Controller
      */
     public function edit(Request $request, string $id)
     {
-        $view = $request->path();
         $roles = Roles::all();
         $user = User::where('id', $id)->get();
         return view('users.update', [
             'user' => $user[0],
-            'roles' => $roles,
-            'view' => $view,
+            'roles' => $roles
         ]);
     }
 
