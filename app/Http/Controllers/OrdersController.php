@@ -16,12 +16,10 @@ class OrdersController extends Controller
         $user = Auth::user();
         $name = $user->name;
         $role = $user->role->name;
-        $view = $request->path();
-
-        $orders = Orders::paginate(3);
+    
+        $orders = Orders::paginate(6);
         return view('orders.index', [
             'orders' => $orders,
-            'view' => $view,
             'name' => $name,
             'role' => $role,
         ]);
@@ -48,9 +46,11 @@ class OrdersController extends Controller
      */
     public function show(string $id)
     {
-        $order = Orders::findOrFail($id);
+        $order = Orders::with('user')->findOrFail($id);
 
-    return view('orders.show', compact('order'));
+       
+
+            return view('orders.show', compact('order'));
     }
 
     /**

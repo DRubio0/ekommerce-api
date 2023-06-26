@@ -6,7 +6,7 @@ Orders
 
 @section('content')
 <div class="my-12">
-    <h1 class="mt-5 text-center text-xl uppercase text-white">Order View Section</h1>
+    <h1 class="mt-5 text-center text-xl uppercase text-white mb-4">Order View Section</h1>
     <div class="bg-blue-100/50 rounded p-3">
         <div class="overflow-x-auto">
             <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
@@ -69,9 +69,9 @@ Orders
                         </table>
                     </div>
                 </div>
-                {{-- <div class="pagination-container mt-3">
-                    {{ $products->links('pagination::tailwind') }}
-                </div> --}}
+                <div class="pagination-container mt-3">
+                    {{ $orders->links('pagination::tailwind') }}
+                </div>
             </div>
         </div>
     </div>

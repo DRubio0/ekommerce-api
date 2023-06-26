@@ -12,7 +12,7 @@ class UserApiController extends Controller
      */
     public function index()
     {
-        $users = User::with('role')->get();
+        $users = User::where('role_id', '=', 3)->with('role')->get();
 
         return response()->json($users);
     }

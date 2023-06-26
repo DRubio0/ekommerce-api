@@ -13,9 +13,10 @@ class OrdersApiController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $orders = Orders::with('products')->get();
+        $user = $request->user();
+        $orders = Orders::where('user_id', '=', $user->id)->with('products')->get();
 
         return $orders;
     }
@@ -25,9 +26,12 @@ class OrdersApiController extends Controller
      */
     public function store(Request $request)
     {
+        $user = $request->user();
+        
         $order = new Orders();
         $order->total = $request->total;
         $order->order_sent = 'inprogress';
+        $order->user_id = $user->id;
         $order->save();
 
         $id = $order->id;

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApiAuthController;
 use App\Http\Controllers\CategoriesApiController;
 use App\Http\Controllers\OrdersApiController;
 use App\Http\Controllers\ProductController;
@@ -19,20 +20,33 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    // return $request->user();
+Route::middleware('auth:sanctum')->group(function() 
+{
+    // User
+    Route::get('/user', function (Request $request) 
+    {
+        return $request->user();
+    });
+    Route::post('/user', [ApiAuthController::class, 'updateImage']);
+    Route::patch('/user', [ApiAuthController::class, 'update']);
+    Route::post('/logout', [ApiAuthController::class, 'logout']);
+
+    
+    // Products
+    Route::get('/products', [ProductsApiController::class, 'index']);
+    Route::get('/product/{product}', [ProductsApiController::class, 'show']);
+
+    // Categories
+    Route::get('/categories',[CategoriesApiController::class,'index']);
+
+    // Orders
+    Route::get('/orders', [OrdersApiController::class, 'index']);
+    Route::post('/orders', [OrdersApiController::class, 'store']);
 });
-
-// Products
-Route::get('/products', [ProductsApiController::class, 'index']);
-Route::get('/product/{product}', [ProductsApiController::class, 'show']);
-
-// Orders
-Route::get('/orders', [OrdersApiController::class, 'index']);
-Route::post('/orders', [OrdersApiController::class, 'store']);
-
-// Categories
-Route::get('/categories',[CategoriesApiController::class,'index']);
 
 //Users
 Route::get('/users',[UserApiController::class,'index']);
+
+// Authentication
+Route::post('/register', [ApiAuthController::class, 'register']);
+Route::post('/login', [ApiAuthController::class, 'login']);

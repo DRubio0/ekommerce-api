@@ -7,7 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.6/jquery.inputmask.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <script>
@@ -110,7 +109,7 @@
                         @else
                             <form action="{{ route('logout') }}" method="POST">
                                 @csrf
-                                <button class="w-full text-center text-sm text-gray-400 hover:text-white flex mt-auto mb-5 justify-center items-center h-16 bg-gray-900 hover:bg-gray-600 cursor-pointer">Sign Out</button>
+                                <button class="w-full text-center text-sm text-gray-400 hover:text-white flex justify-center items-center h-16 bg-gray-900 hover:bg-gray-600 cursor-pointer">Sign Out</button>
                             </form>
                         @endguest
                     </div>

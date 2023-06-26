@@ -22,18 +22,22 @@
                     @elseif($order->order_sent === 'inprogress') text-yellow-500
                     @endif">{{ $order->order_sent }}</p>
                 </div>
+                <div class="mb-4 flex items-center">
+                    <h2 class="font-bold text-xl">Ordered by: </h2>
+                    <p class=" uppercase font-bold ml-2"> {{ $order->user->name}} {{$order->user->last_name}}</p>
+                </div>
                 <table class="w-full text-left">
                     <thead>
                         <tr>
                             <th class="py-2">Product</th>
-                            <th class="py-2">Price</th>
+                            <th class="py-2 text-center">Price</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($order->products as $product)
                             <tr>
-                                <td class="py-2">{{ $product->name }}</td>
-                                <td class="py-2 text-right">${{ $product->price }}</td>
+                                <td class="py-2 text-xl">{{ $product->name }}</td>
+                                <td class="py-2 text-center text-xl">${{ $product->price }}</td>
                             </tr>
                         @endforeach
                     </tbody>
