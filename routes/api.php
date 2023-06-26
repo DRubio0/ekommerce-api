@@ -44,7 +44,7 @@ Route::middleware('auth:sanctum')->group(function()
     Route::post('/orders', [OrdersApiController::class, 'store']);
 });
 
-//Users
+//Users Developer
 Route::get('/users',[UserApiController::class,'index']);
 
 // Authentication
